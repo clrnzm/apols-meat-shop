@@ -1,0 +1,24 @@
+# Repository Instructions
+
+- Read `docs/PROJECT_CONTEXT.md` before planning or implementing changes.
+- This is a one-page promotional website, not a transactional web application.
+- Use the existing Next.js App Router, TypeScript, Tailwind CSS, ESLint, npm, `src` directory, and `@/*` alias.
+- Use Server Components by default. Add `"use client"` only when interaction requires it.
+- Organize reusable code under `src/components/layout`, `src/components/sections`, `src/components/shared`, `src/constants`, and `src/lib`.
+- Keep components focused and readable.
+- Build one approved section or milestone at a time. Do not build unapproved sections.
+- Use semantic HTML and accessible controls.
+- Implement mobile-first responsive layouts. Avoid horizontal overflow and overlapping content.
+- Include visible focus states and keyboard support. Respect `prefers-reduced-motion`.
+- Use `next/font` for fonts.
+- Store design tokens as CSS custom properties in `globals.css`.
+- Do not introduce pink.
+- Do not add dependencies unless necessary and explicitly approved.
+- Do not download or hotlink unlicensed images. Preserve placeholders for the logo and photography until final assets are supplied.
+- Process only trusted local image assets. Do not configure user-controlled or untrusted remote image sources.
+- Do not invent prices, testimonials, reviews, addresses, or business claims.
+- Run `npm run lint` and `npm run build` after every completed milestone. Fix errors caused by the current task.
+- Run `npm audit` before deployment and when upgrading Next.js. Do not use dependency overrides or `npm audit fix --force` without explicit approval.
+- Do not make Git commits unless explicitly requested.
+- Never use `npm audit fix --force` without explicit approval.
+- Preserve unrelated user changes.

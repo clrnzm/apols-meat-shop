@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+:root {
+  --brand-ink: #141515;
+  --warm-paper: #f4ebdd;
+  --warm-red: #c63d3d;
+  --light-text: #fbf8f2;
+  --surface-deep: #0b0c0c;
+  --surface-muted: #242626;
+  --text-muted: #bebbb5;
+  --warm-red-hover: #ad3030;
+  --warm-red-active: #942828;
+  --border-subtle: rgb(251 248 242 / 14%);
+  --focus-ring: #e15a52;
+}
+
+@theme inline {
+  --color-brand-ink: var(--brand-ink);
+  --color-warm-paper: var(--warm-paper);
+  --color-warm-red: var(--warm-red);
+  --color-light-text: var(--light-text);
+  --color-surface-deep: var(--surface-deep);
+  --color-surface-muted: var(--surface-muted);
+  --color-text-muted: var(--text-muted);
+  --color-warm-red-hover: var(--warm-red-hover);
+  --color-warm-red-active: var(--warm-red-active);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-bricolage-grotesque);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: var(--brand-ink);
+  color: var(--light-text);
+  font-family: var(--font-manrope), sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+
+.hero-background {
+  position: relative;
+  isolation: isolate;
+  background-color: var(--brand-ink);
+  background-image:
+    radial-gradient(circle at 78% 34%, rgb(198 61 61 / 22%), transparent 28rem),
+    radial-gradient(circle at 91% 66%, rgb(244 235 221 / 7%), transparent 20rem),
+    linear-gradient(135deg, #171919 0%, #0d0e0e 55%, #181111 100%);
+}
+
+.hero-background::before {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-image:
+    repeating-linear-gradient(
+      118deg,
+      transparent 0,
+      transparent 64px,
+      rgb(255 255 255 / 1.8%) 65px,
+      transparent 66px
+    );
+  content: "";
+}
+
+.hero-background::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    90deg,
+    rgb(5 6 6 / 78%) 0%,
+    rgb(8 9 9 / 58%) 48%,
+    rgb(8 9 9 / 12%) 100%
+  );
+  content: "";
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
