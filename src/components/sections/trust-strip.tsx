@@ -21,8 +21,8 @@ const trustItems = [
 
 export function TrustStrip() {
   return (
-    <div className="border-t border-white/15 bg-black/10">
-      <Container>
+    <div className="border-t border-white/15">
+      <Container width="wide">
         <ul className="grid md:grid-cols-3 md:divide-x md:divide-white/15">
           {trustItems.map((item) => {
             const Icon = item.icon;
