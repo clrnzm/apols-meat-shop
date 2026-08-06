@@ -4,14 +4,17 @@
   --brand-ink: #141515;
   --warm-paper: #f4ebdd;
   --warm-red: #c63d3d;
+  --warm-red-ink: #ad3030;
   --warm-red-text: #e65a55;
   --light-text: #fbf8f2;
   --surface-deep: #0b0c0c;
   --surface-muted: #242626;
   --text-muted: #bebbb5;
+  --text-ink-muted: #5b5750;
   --warm-red-hover: #ad3030;
   --warm-red-active: #942828;
   --border-subtle: rgb(251 248 242 / 14%);
+  --border-paper: rgb(20 21 21 / 16%);
   --focus-ring: #e15a52;
 }
 
@@ -19,13 +22,16 @@
   --color-brand-ink: var(--brand-ink);
   --color-warm-paper: var(--warm-paper);
   --color-warm-red: var(--warm-red);
+  --color-warm-red-ink: var(--warm-red-ink);
   --color-warm-red-text: var(--warm-red-text);
   --color-light-text: var(--light-text);
   --color-surface-deep: var(--surface-deep);
   --color-surface-muted: var(--surface-muted);
   --color-text-muted: var(--text-muted);
+  --color-text-ink-muted: var(--text-ink-muted);
   --color-warm-red-hover: var(--warm-red-hover);
   --color-warm-red-active: var(--warm-red-active);
+  --color-border-paper: var(--border-paper);
   --font-sans: var(--font-manrope);
   --font-display: var(--font-bricolage-grotesque);
 }
