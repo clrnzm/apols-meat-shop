@@ -5,6 +5,7 @@ import {
   MessageCircle,
   Phone,
 } from "lucide-react";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import {
   SHOP_HOURS,
@@ -24,14 +25,15 @@ export function Footer() {
       <Container width="wide">
         <div className="grid gap-10 sm:grid-cols-2 sm:gap-x-12 lg:grid-cols-12 lg:gap-8 xl:gap-12">
           <div className="sm:col-span-2 lg:col-span-4 xl:col-span-5">
-            <div className="inline-flex flex-col leading-none">
-              <span className="font-display text-3xl font-bold tracking-[-0.04em] text-warm-paper">
-                Apol’s
-              </span>
-              <span className="mt-1.5 text-[0.62rem] font-bold tracking-[0.26em] text-warm-red-text">
-                MEAT SHOP
-              </span>
-            </div>
+            <Image
+              src="/images/brand/apols-logo-full-light.svg"
+              alt=""
+              aria-hidden="true"
+              width={2949}
+              height={1561}
+              unoptimized
+              className="h-20 w-auto sm:h-24"
+            />
             <p className="mt-6 max-w-md text-base leading-7 text-text-muted">
               Fresh meat, frozen favorites, and celebration-ready lechon for
               Bustos families.

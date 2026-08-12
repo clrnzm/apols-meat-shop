@@ -64,6 +64,25 @@ button {
   outline-offset: 4px;
 }
 
+.paper-pattern-background {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.paper-pattern-background::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("/images/brand/apols-meat-pattern.webp");
+  background-position: center top;
+  background-repeat: repeat;
+  background-size: clamp(36rem, 55vw, 52rem) auto;
+  content: "";
+  opacity: 0.13;
+  pointer-events: none;
+}
+
 .hero-background {
   position: relative;
   isolation: isolate;

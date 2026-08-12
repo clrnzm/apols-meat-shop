@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { Menu, MessageCircle, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
 import { ButtonLink } from "@/components/shared/button-link";
@@ -107,16 +108,20 @@ export function Navbar() {
       >
         <a
           href="#top"
-          className="group inline-flex flex-col leading-none"
-          aria-label="Apol’s Meat Shop, back to top"
+          className="group inline-flex shrink-0 items-center"
+          aria-label="Apol’s Meat Shop — Home"
           onClick={closeMenu}
         >
-          <span className="font-display text-2xl font-bold tracking-[-0.04em] text-light-text transition-colors group-hover:text-warm-red-text">
-            Apol’s
-          </span>
-          <span className="mt-1 text-[0.58rem] font-bold tracking-[0.26em] text-warm-red-text">
-            MEAT SHOP
-          </span>
+          <Image
+            src="/images/brand/apols-logo-mark-light.svg"
+            alt=""
+            aria-hidden="true"
+            width={3008}
+            height={1718}
+            priority
+            unoptimized
+            className="h-11 w-auto transition-opacity group-hover:opacity-85 sm:h-12"
+          />
         </a>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">

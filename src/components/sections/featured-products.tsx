@@ -77,10 +77,10 @@ export function FeaturedProducts() {
   return (
     <section
       id="products"
-      className="scroll-mt-20 border-t-4 border-warm-red bg-warm-paper py-20 text-brand-ink sm:py-24 lg:py-28 xl:py-32"
+      className="paper-pattern-background scroll-mt-20 border-t-4 border-warm-red bg-warm-paper py-20 text-brand-ink sm:py-24 lg:py-28 xl:py-32"
       aria-labelledby="products-heading"
     >
-      <Container width="wide">
+      <Container width="wide" className="relative z-10">
         <div className="grid gap-8 border-b border-border-paper pb-12 lg:grid-cols-12 lg:items-end lg:gap-10 lg:pb-16">
           <div className="lg:col-span-7 xl:col-span-8">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-warm-red-ink sm:text-sm">
