@@ -27,8 +27,12 @@ export function Navbar() {
     if (!isMenuOpen) return;
 
     const previousOverflow = document.body.style.overflow;
-    const mainContent = document.querySelector<HTMLElement>("main");
-    const wasMainContentInert = mainContent?.inert ?? false;
+    const backgroundRegions = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-mobile-menu-inert]"),
+    );
+    const previousInertStates = backgroundRegions.map(
+      (region) => [region, region.inert] as const,
+    );
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
@@ -69,13 +73,17 @@ export function Navbar() {
     };
 
     document.body.style.overflow = "hidden";
-    if (mainContent) mainContent.inert = true;
+    backgroundRegions.forEach((region) => {
+      region.inert = true;
+    });
     document.addEventListener("keydown", handleKeyDown);
     window.requestAnimationFrame(() => firstMobileLinkRef.current?.focus());
 
     return () => {
       document.body.style.overflow = previousOverflow;
-      if (mainContent) mainContent.inert = wasMainContentInert;
+      previousInertStates.forEach(([region, wasInert]) => {
+        region.inert = wasInert;
+      });
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isMenuOpen]);
