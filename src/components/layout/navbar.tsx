@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { Menu, MessageCircle, X } from "lucide-react";
 import { Container } from "@/components/layout/container";
@@ -100,113 +101,125 @@ export function Navbar() {
   }, []);
 
   const closeMenu = () => setIsMenuOpen(false);
-
-  return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,backdrop-filter] duration-300",
-        isScrolled || isMenuOpen
-          ? "border-white/10 bg-brand-ink/90 backdrop-blur-md"
-          : "border-transparent bg-transparent",
-      )}
+  const mobileMenuPanel = (
+    <div
+      ref={mobileNavigationRef}
+      id="mobile-navigation"
+      className="fixed inset-x-0 top-20 z-[60] h-[calc(100dvh-5rem)] overflow-y-auto overscroll-contain border-t border-white/10 bg-brand-ink lg:hidden"
     >
-      <Container
-        width="wide"
-        className="flex h-20 items-center justify-between"
-      >
-        <a
-          href="#top"
-          className="group inline-flex shrink-0 items-center"
-          aria-label="Apol’s Meat Shop — Home"
-          onClick={closeMenu}
-        >
-          <Image
-            src="/images/brand/apols-logo-mark-light.svg"
-            alt=""
-            aria-hidden="true"
-            width={3008}
-            height={1718}
-            priority
-            unoptimized
-            className="h-11 w-auto transition-opacity group-hover:opacity-85 sm:h-12"
-          />
-        </a>
-
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary navigation">
-          {NAV_ITEMS.map((item) => (
+      <Container width="wide" className="flex min-h-full flex-col py-8">
+        <nav className="flex flex-col" aria-label="Mobile navigation">
+          {NAV_ITEMS.map((item, index) => (
             <a
               key={item.href}
+              ref={index === 0 ? firstMobileLinkRef : undefined}
               href={item.href}
-              className="text-sm font-semibold text-light-text/80 transition-colors hover:text-warm-red-text"
+              className="border-b border-white/10 py-5 font-display text-2xl font-semibold text-light-text transition-colors hover:text-warm-red-text"
+              onClick={closeMenu}
             >
               {item.label}
             </a>
           ))}
         </nav>
 
-        <div className="hidden lg:block">
-          <ButtonLink
-            href={MESSENGER_URL}
-            target="_blank"
-            rel="noreferrer"
-            size="compact"
-          >
-            <MessageCircle aria-hidden="true" size={17} strokeWidth={2} />
-            Message Us
-          </ButtonLink>
-        </div>
-
-        <button
-          ref={menuButtonRef}
-          type="button"
-          className="inline-flex size-11 items-center justify-center rounded-sm border border-white/20 text-light-text transition-colors hover:border-warm-red hover:text-warm-red-text lg:hidden"
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-navigation"
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
-          onClick={() => setIsMenuOpen((open) => !open)}
+        <ButtonLink
+          href={MESSENGER_URL}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-8 w-full"
+          onClick={closeMenu}
         >
-          {isMenuOpen ? (
-            <X aria-hidden="true" size={23} />
-          ) : (
-            <Menu aria-hidden="true" size={23} />
-          )}
-        </button>
+          <MessageCircle aria-hidden="true" size={18} strokeWidth={2} />
+          Message Us
+        </ButtonLink>
       </Container>
+    </div>
+  );
 
-      {isMenuOpen ? (
-        <div
-          ref={mobileNavigationRef}
-          id="mobile-navigation"
-          className="fixed inset-x-0 bottom-0 top-20 overflow-y-auto border-t border-white/10 bg-brand-ink lg:hidden"
+  return (
+    <>
+      <header
+        className={cn(
+          "fixed inset-x-0 top-0 z-[70] border-b transition-[background-color,border-color,backdrop-filter] duration-300",
+          isMenuOpen
+            ? "border-white/10 bg-brand-ink"
+            : isScrolled
+              ? "border-white/10 bg-brand-ink/90 backdrop-blur-md"
+              : "border-transparent bg-transparent",
+        )}
+      >
+        <Container
+          width="wide"
+          className="flex h-20 items-center justify-between"
         >
-          <Container width="wide" className="flex min-h-full flex-col py-8">
-            <nav className="flex flex-col" aria-label="Mobile navigation">
-              {NAV_ITEMS.map((item, index) => (
-                <a
-                  key={item.href}
-                  ref={index === 0 ? firstMobileLinkRef : undefined}
-                  href={item.href}
-                  className="border-b border-white/10 py-5 font-display text-2xl font-semibold text-light-text transition-colors hover:text-warm-red-text"
-                  onClick={closeMenu}
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
+          <a
+            href="#top"
+            className="group inline-flex shrink-0 items-center"
+            aria-label="Apol’s Meat Shop — Home"
+            onClick={closeMenu}
+          >
+            <Image
+              src="/images/brand/apols-logo-mark-light.svg"
+              alt=""
+              aria-hidden="true"
+              width={3008}
+              height={1718}
+              priority
+              unoptimized
+              className="h-11 w-auto transition-opacity group-hover:opacity-85 sm:h-12"
+            />
+          </a>
 
+          <nav
+            className="hidden items-center gap-8 lg:flex"
+            aria-label="Primary navigation"
+          >
+            {NAV_ITEMS.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-semibold text-light-text/80 transition-colors hover:text-warm-red-text"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="hidden lg:block">
             <ButtonLink
               href={MESSENGER_URL}
               target="_blank"
               rel="noreferrer"
-              className="mt-8 w-full"
-              onClick={closeMenu}
+              size="compact"
             >
-              <MessageCircle aria-hidden="true" size={18} strokeWidth={2} />
+              <MessageCircle aria-hidden="true" size={17} strokeWidth={2} />
               Message Us
             </ButtonLink>
-          </Container>
-        </div>
-      ) : null}
-    </header>
+          </div>
+
+          <button
+            ref={menuButtonRef}
+            type="button"
+            className="inline-flex size-11 items-center justify-center rounded-sm border border-white/20 text-light-text transition-colors hover:border-warm-red hover:text-warm-red-text lg:hidden"
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+            aria-label={
+              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            {isMenuOpen ? (
+              <X aria-hidden="true" size={23} />
+            ) : (
+              <Menu aria-hidden="true" size={23} />
+            )}
+          </button>
+        </Container>
+      </header>
+
+      {isMenuOpen && typeof document !== "undefined"
+        ? createPortal(mobileMenuPanel, document.body)
+        : null}
+    </>
   );
 }
