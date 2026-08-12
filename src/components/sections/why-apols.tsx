@@ -28,10 +28,10 @@ export function WhyApols() {
   return (
     <section
       id="why-apols"
-      className="scroll-mt-20 border-t border-warm-red/60 bg-warm-paper py-20 text-brand-ink sm:py-24 lg:py-28 xl:py-32"
+      className="paper-pattern-background scroll-mt-20 border-t border-warm-red/60 bg-warm-paper py-20 text-brand-ink sm:py-24 lg:py-28 xl:py-32"
       aria-labelledby="why-apols-heading"
     >
-      <Container width="wide">
+      <Container width="wide" className="relative z-10">
         <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-12 xl:gap-16">
           <div className="min-w-0 lg:col-span-5 lg:pr-4">
             <p className="text-xs font-bold uppercase tracking-[0.22em] text-warm-red-ink sm:text-sm">
