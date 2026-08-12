@@ -2,6 +2,7 @@ export type ShopLocation = {
   badge: string;
   name: string;
   address: string;
+  municipality: string;
   mapUrl: string;
   image: {
     src: string;
@@ -25,6 +26,7 @@ export const SHOP_LOCATIONS = [
     badge: "Main Branch",
     name: "Poblacion",
     address: "Poblacion, Bustos, Bulacan",
+    municipality: "Bustos, Bulacan",
     mapUrl: "https://maps.app.goo.gl/LzsKruw7Se14hCn68",
     image: {
       src: "/images/shop/poblacion-storefront.webp",
@@ -36,6 +38,7 @@ export const SHOP_LOCATIONS = [
     badge: "Bonga Mayor Branch",
     name: "Bonga Mayor",
     address: "Bonga Mayor, Bustos, Bulacan",
+    municipality: "Bustos, Bulacan",
     mapUrl: "https://maps.app.goo.gl/iyomdCU9FJpNNE7N6",
     image: {
       src: "/images/shop/bonga-mayor-storefront.webp",
